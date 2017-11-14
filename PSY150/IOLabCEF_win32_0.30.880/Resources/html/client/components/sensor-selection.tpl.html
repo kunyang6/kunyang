@@ -1,0 +1,5 @@
+<div>
+    <iolab-param-plot ng-repeat="plotParams in parametricPlots[remote] | orderBy:'desc'"></iolab-param-plot>
+    <iolab-chart ng-repeat="sensor in chartSensors[remote] | orderBy:'desc'"></iolab-chart>
+    <iolab-ecg-chart ng-repeat="sensor in ecgSensors[remote]"></iolab-ecg-chart>
+</div>

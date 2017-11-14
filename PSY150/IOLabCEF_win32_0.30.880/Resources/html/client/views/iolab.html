@@ -1,0 +1,79 @@
+<!-- Header navigation bar -->
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div ng-include="'views/navbar.html'"></div>
+</nav>
+
+<div class="container-fluid fixed-controls">
+    <div class="container">
+        <div class="row">
+            <section class="text-center">
+                <controls />
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Display for only remote 1 -->
+<div id="RemotesContainer" class="charts-container" ng-class="{'container': remotesToDisplay != 3, 'container-fluid cc-wide': remotesToDisplay == 3}">
+    <div class="row">
+        <div ng-class="{'wrapper-box':remotesToDisplay != 3}">
+            <div class="wrapper" ng-class="{'wrapper-wide':remotesToDisplay != 3}">
+                <div id="Page1" class="column" ng-class="{'page':remotesToDisplay != 3, 'hide-move-left': remotesToDisplay == 2,
+                                                          'show-move-right':remotesToDisplay == 1, 'column-left':remotesToDisplay == 3}">
+                    <!-- Sensor selection for Remote 1 when screen is wide -->
+                    <div class="col-sm-3 hidden-xs" ng-show="remotesToDisplay != 3">
+                        <section>
+                            <fixed-configuration remote="1" />
+                        </section>
+                        <section>
+                            <output-config remote="1" />
+                        </section>
+                    </div>
+
+                    <!-- Remote 1 -->
+                    <div id="Remote1Charts" ng-class="{'col-sm-9': remotesToDisplay != 3, 'col-sm-6 two-columns right-divider': remotesToDisplay == 3}">
+                        <!-- Sensor selection for Remote 1 when screen is narrow or when both remotes are being displayed -->
+                        <section class="three-columns" ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+                            <fixed-configuration remote="1" />
+                        </section>
+                        <section ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+                            <output-config remote="1" />
+                        </section>
+                        <!-- Data display for Remote 1 -->
+                        <section class="text-center">
+                            <sensor-selection remote="1" />
+                        </section>
+                    </div>
+                </div>
+
+                <div id="Page2" class="column" ng-class="{'page':remotesToDisplay != 3, 'show-move-left':remotesToDisplay == 2,
+                                                          'hide-move-right':remotesToDisplay == 1, 'column-right':remotesToDisplay == 3}">
+                    <!-- Sensor selection for Remote 2 when screen is wide -->
+                    <div class="col-sm-3 hidden-xs" ng-show="remotesToDisplay != 3">
+                        <section>
+                            <fixed-configuration remote="2" />
+                        </section>
+                        <section>
+                            <output-config remote="2" />
+                        </section>
+                    </div>
+
+                    <!-- Remote 2 -->
+                    <div ng-class="{'col-sm-9': remotesToDisplay != 3, 'col-sm-6 two-columns left-divider': remotesToDisplay == 3}">
+                        <!-- Sensor selection for Remote 2 when screen is narrow or when both remotes are being displayed -->
+                        <section class="three-columns" ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+                            <fixed-configuration remote="2" />
+                        </section>
+                        <section ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+                            <output-config remote="2" />
+                        </section>
+                        <!-- Data display for Remote 2 -->
+                        <section class="text-center">
+                            <sensor-selection remote="2" />
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

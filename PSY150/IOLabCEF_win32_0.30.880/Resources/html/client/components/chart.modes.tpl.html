@@ -1,0 +1,32 @@
+<!-- chart mode -->
+<div class="btn-group btn-group-sm pull-left">
+    <label class="btn btn-default" ng-model="control.chartMode" btn-radio="chartModes[0]">
+        <span class="glyphicon" ng-class="chartModes[0].glyphicon"></span>
+    </label>
+    <label ng-if="control.chartMode != chartModeZoom.value" class="btn btn-default"
+           ng-model="control.chartMode" btn-radio="chartModeZoom.value" >
+        <span class="glyphicon" ng-class="chartModeZoom.value.glyphicon" style="font-size: 14px; vertical-align: -10%;"></span>
+        <span><span class="caret"></span></span>
+    </label>
+    <label ng-if="control.chartMode == chartModeZoom.value" dropdown dropdown-toggle class="btn btn-default"
+           ng-model="control.chartMode" btn-radio="chartModeZoom.value" >
+        <span class="glyphicon" ng-class="chartModeZoom.value.glyphicon" style="font-size: 14px; vertical-align: -10%;"></span>
+        <span><span class="caret"></span></span>
+        <ul class="dropdown-menu pull-right skinny">
+            <li ng-click="chartModeZoom.value = chartModes[1]; control.chartMode = chartModes[1]" class="dpdn-opt">
+                <span class="glyphicon {{chartModes[1].glyphicon}}"></span>
+            </li>
+            <li ng-click="chartModeZoom.value = chartModes[2]; control.chartMode = chartModes[2]" class="dpdn-opt">
+                <span class="glyphicon {{chartModes[2].glyphicon}}"></span>
+            </li>
+            <li ng-click="chartModeZoom.value = chartModes[3]; control.chartMode = chartModes[3]" class="dpdn-opt">
+                <span class="glyphicon {{chartModes[3].glyphicon}}"></span>
+            </li>
+        </ul>
+    </label>
+    <label class="btn btn-default" ng-model="control.chartMode" btn-radio="chartModes[4]">
+        <span class="glyphicon" ng-class="chartModes[4].glyphicon"></span>
+    </label>
+</div>
+
+<span class="glyphicon icon-arrow"></span>

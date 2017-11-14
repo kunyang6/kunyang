@@ -1,0 +1,51 @@
+q()
+help(read.csv)
+data1 <- read.csv(file.choose(),header = T)
+data1
+data <- read.tabe(file.choose(), header = T, sep= ",")
+data2 <- read.table(file.choose(), header =T, sep =",")
+data2
+attach(data1)
+?barplot
+table(Gender)
+table(sex)
+count<-table(sex)
+count
+table(sex)/(466+843)
+percent <- table(sex)/(466+843)
+table(pclass)
+class <- table(pclass)
+barplot(class)
+table(pclass, survived)
+classVssurvival <- table(pclass,survived)
+barplot(classVssurvival)
+table(survived)/ class
+classVssurvival / class
+table(sex)
+table(sex,survived)
+?twoway table
+help(table)
+twoWayTable <- matrix(classVssurvival,nol = , byrow = T)
+twoWayTable <- matrix(classVssurvival,nol = 3 , byrow = T)
+twoWayTable <- matrix(classVssurvival,ncol = 3 , byrow = T)
+twoWayTable
+colnames(0) <- classVssurvival("first","second","third")
+colnames(0) <- c("first", "second", "third")
+colnames(0) <- twoWayTable("first", "second", "third")
+colname(0)<- ("first","second","third")
+colnames(0) <- classVssurvival("first", "second" , "third")
+colnames(0) <- c("first" , "second" , "third")
+twoWayTable(0,1)
+twoWayTable
+classVssurivied
+classVssurvived
+classVssurvival
+colnames(1) <- classVssurvival("passenger class","dead", "survived")
+cvs <- table(pclass, survived)
+cvs
+cvs.colnames(1)
+names(cvs)
+my.data <- data.frame(dead = c(123,158,528), survived = c(200,119,181))
+my.data
+rownames(my.data) <- c("first", "second", "third")
+my.data

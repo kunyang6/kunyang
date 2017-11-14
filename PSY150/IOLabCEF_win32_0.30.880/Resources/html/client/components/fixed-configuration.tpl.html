@@ -1,0 +1,19 @@
+<div class="no-print">
+    <h4 ng-show="remotesToDisplay != 3" ng-class="{'visible-sm': remotesToDisplay != 3}">Sensors <small>(Remote {{remote}})</small></h4>
+    <h3 class="hidden-xs hidden-sm" ng-show="remotesToDisplay != 3">Sensors <small>(Remote {{remote}})</small></h3>
+    <h3 ng-click="isCollapsed = !isCollapsed" ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+        <button class="btn btn-default btn-xs pull-right" ng-show="!isCollapsed" title="Click to collapse">&#8722;</button>
+        <button class="btn btn-default btn-xs pull-right" ng-show="isCollapsed" title="Click to expand">+</button>
+        Sensors <small>(Remote {{remote}})</small>
+    </h3>
+
+    <div class="sensor-list" collapse="isCollapsed">
+        <!--  ng-show="IOLab.isNewAcquisition() || sampleRates[sensor.code]" -->
+        <div class="checkbox selector-item" ng-repeat="sensor in fixedConfigService.sensors[remote] | orderBy:'desc'">
+            <input type="checkbox" ng-checked="sensor.checked" ng-disabled="!sensor.available"
+                   ng-click="fixedConfigService.sensorChecked(remote, sensor)" value="{{sensor.code}}" id="Remote{{remote}}-Sensor{{sensor.code}}" />
+            <label ng-class="{'disabled': !sensor.available, 'available': sensor.sampleRate}" for="Remote{{remote}}-Sensor{{sensor.code}}">{{sensor.desc}}</label>
+            <span ng-show="sensor.sampleRate || sensor.checked" title="Sample rate">({{sensor.sampleRate}} Hz)</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="modal-pairing">
+    <div class="modal-header">
+        <h3>Sensor Calibration <small>(Remote: {{remote}})</small></h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p>
+                The process below will help you calibrate the following sensors: 
+                <ul>
+                    <li ng-repeat="sensor in sensorTypeList"><strong>{{sensor.desc}}</strong></li>
+                </ul>
+                You can cancel the calibration at any time by pressing the 'Close' button.
+            </p>
+        </div>
+
+        <h3>Step {{currentStep}} of {{numOfSteps}}</h3>
+        <div class="progress">
+            <div class="progress-bar input-sm" role="progressbar" aria-valuenow="{{currentPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{currentPercentage}}%;">
+                <span class="sr-only">{{currentPercentage}}% Complete</span>
+            </div>
+        </div>
+
+        <iolab-gauge sensor="gaugeSensor" style="margin:30px 0;" class="text-center"></iolab-gauge>
+
+        <div ng-show="showSaveButton != true" style="overflow:auto"> 
+            <div class="pull-right" ng-show="calibrationData.imagePath != ''">
+                <img ng-src="{{calibrationData.imagePath}}" />
+            </div>
+            <p class="text-info" style="font-size: larger;">
+                {{calibrationData.desc}}, click on 'Next', and keep the position for 2 seconds.
+            </p>
+            <button class="btn btn-small btn-default" ng-click="validateData()">Next</button>
+        </div>
+
+        <div ng-show="showSaveButton == true"> 
+            <p class="text-info" style="font-size: larger;">
+                Select the sensors for which you would like to save the calibration data:
+            </p>
+            <ul class="list-no-type text-info" style="font-size: larger;">
+                <li ng-repeat="sensor in sensorTypeList">
+                    <input type="checkbox" value="{{sensor.incl}}" ng-model="sensor.incl" /> {{sensor.desc}}
+                </li>
+            </ul>
+            <p class="text-info" style="font-size: larger;">
+                Save calibration in database:
+            </p>
+            <button class="btn btn-small btn-success" ng-click="sendCalibration()">Save</button>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Close</button>
+    </div>
+</div>

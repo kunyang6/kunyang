@@ -1,0 +1,75 @@
+<div class="data-controls-container no-print">
+    <div class="data-controls">
+        <!-- Controls -->
+        <span class="btn-group" style="margin-right: 12px;">
+            <button class="btn btn-default btn-sm" type="button" ng-click="startData()" title="Record"
+                    ng-disabled="dongleMode != 'CONNECTED' || !(r1Disabled && r2Disabled)"
+                    ng-class="{'disabled':dongleMode != 'CONNECTED' || !(r1Disabled && r2Disabled)}">
+                <span ng-class="{'btn-record': dongleMode == 'CONNECTED' && (r1Disabled && r2Disabled)}">
+                    <span class="glyphicon glyphicon-record"></span>
+                </span>
+                <span class="hidden-xs">Record</span>
+            </button>
+            <button class="btn btn-default btn-sm" ng-disabled="dongleMode != 'DATA'"
+                    ng-class="{'disabled':dongleMode != 'DATA'}" type="button" ng-click="stopData()" title="Stop">
+                <span ng-class="{'btn-stop': dongleMode == 'DATA'}">
+                    <span class="glyphicon glyphicon-stop"></span>
+                </span>
+                <span class="hidden-xs">Stop</span>
+            </button>
+            <button class="btn btn-default btn-sm" ng-disabled="dongleMode == 'DATA'"
+                    ng-class="{'disabled':dongleMode == 'DATA'}" type="button" ng-click="resetDataAndConfig(r2Off)" title="Reset">
+                <span class="btn-reset">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </span>
+                <span class="hidden-xs">Reset</span>
+            </button>
+        </span>
+
+        <button class="btn btn-default btn-sm" style="margin-right: 12px;"
+                ng-disabled="dongleMode == 'DATA'"
+                ng-class="{'disabled':dongleMode == 'DATA'}" type="button" ng-click="acquisitionManagement()" title="Acquisition list management">
+                <span ng-class="{'btn-reload': dongleMode != 'DATA'}">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                </span>
+            <span class="hidden-xs">&nbsp;Open</span>
+        </button>
+
+        <!-- Chart types (chart / Parametric plot) -->
+        <div class="btn-group" style="margin-right: 12px; display: inline-block;">
+            <button class="btn btn-default btn-sm" ng-model="type" btn-radio="'chart'" title="Chart">Chart</button>
+            <button class="btn btn-default btn-sm" ng-model="type" btn-radio="'parametric'" title="Parametric plot">Param. plot</button>
+        </div>
+        <!-- Options button -->
+        <div class="btn-group" ng-controller="OptionsCtrl" style="display: inline-block; margin-right: 12px;" dropdown>
+            <button class="btn btn-default btn-sm dropdown-toggle">
+                Options <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <!-- <li role="presentation" class="dpdn-opt" ng-click="openDatabaseModal()">Data Base</li>
+                <li role="presentation" class="divider"></li> -->
+                <li role="presentation" class="dropdown-header">Remote 1</li>
+                <li role="presentation" ng-class="{disabled: r1Disabled}" ng-click="setCalibration(1, 03)" class="dpdn-opt">Calibration: Acc - Magn - Gyro</li>
+                <li role="presentation" ng-class="{disabled: r1Disabled}" ng-click="setCalibration(1, 04)" class="dpdn-opt">Calibration: Force</li>
+                <li role="presentation" ng-click="setOutputConfig(1)" class="dpdn-opt">Output Config</li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" class="dropdown-header">Remote 2</li>
+                <li role="presentation" ng-class="{disabled: r2Disabled}" ng-click="setCalibration(2, 03)" class="dpdn-opt">Calibration: Acc - Magn - Gyro</li>
+                <li role="presentation" ng-class="{disabled: r2Disabled}" ng-click="setCalibration(2, 04)" class="dpdn-opt">Calibration: Force</li>
+                <li role="presentation" ng-click="setOutputConfig(2)" class="dpdn-opt">Output Config</li>
+            </ul>
+        </div>
+        <!-- Toggle b/t single remotes -->
+        <div class="btn-group">
+            <button class="btn btn-default btn-sm" ng-model="remotesToDisplay" btn-radio="1" ng-disabled="remote1Disabled" ng-class="{disabled: remote1Disabled}">
+                <span class="hidden-sm hidden-xs">Remote 1</span>
+                <span class="visible-sm visible-xs" title="Remote 1">1</span>
+            </button>
+            <button class="btn btn-default btn-sm" ng-model="remotesToDisplay" btn-radio="2" ng-disabled="remote2Disabled" ng-class="{disabled: remote2Disabled}">
+                <span class="hidden-sm hidden-xs">Remote 2</span>
+                <span class="visible-sm visible-xs" title="Remote 2">2</span>
+            </button>
+            <button class="btn btn-default btn-sm" ng-model="remotesToDisplay" btn-radio="3" ng-disabled="remote12Disabled" ng-class="{disabled: remote12Disabled}">Both</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand navbar-active" style="margin-right:80px;">IOLab</a>
+    </div>    
+
+    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-controller="ModalPairingCtrl">
+        <ul class="nav navbar-nav">
+            <li>
+                <a ng-class="{'navbar-active':iolabState.dongleID != 0}" title="{{dongleMode}}">
+                    <span class="icon-dongle"></span> Dongle ID {{iolabState.dongleID}}
+                    <span class="visible-md-inline visible-lg-inline">- {{dongleMode}}</span>
+                </a>
+            </li>
+            <li>
+                <a ng-click="open('1')" ng-class="{'navbar-active':!r1Off}" title="ID {{iolabState.remote1.remoteID}}">
+                    <i class="icon-remote"></i> Remote 1:
+                    <span ng-show="iolabState.remote1.pairStatus == 0">Not Paired</span>
+                    <span ng-show="iolabState.remote1.pairStatus == 1">
+                        <span class="visible-md-inline visible-lg-inline">ID {{iolabState.remote1.remoteID}} -</span>
+                        <span ng-show="!r1Off">
+                            {{iolabState.remote1.batteryVoltage.toPrecision(3)}}V
+                            <span ng-show="r1Configured"> - Config {{iolabState.remote1.fixedConfig}}</span>
+                        </span>
+                        <span ng-show="r1Off"><span class="glyphicon glyphicon-off"></span></span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a ng-click="open('2')" ng-class="{'navbar-active':!r2Off}" title="ID {{iolabState.remote2.remoteID}}">
+                    <i class="icon-remote"></i> Remote 2:
+                    <span ng-show="iolabState.remote2.pairStatus == 0">Not Paired</span>
+                    <span ng-show="iolabState.remote2.pairStatus == 1">
+                        <span class="visible-md-inline visible-lg-inline">ID {{iolabState.remote2.remoteID}} -</span>
+                        <span ng-show="!r2Off">
+                            {{iolabState.remote2.batteryVoltage.toPrecision(3)}}V
+                            <span ng-show="r2Configured"> - Config {{iolabState.remote2.fixedConfig}}</span>
+                        </span>
+                        <span ng-show="r2Off"><span class="glyphicon glyphicon-off"></span></span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

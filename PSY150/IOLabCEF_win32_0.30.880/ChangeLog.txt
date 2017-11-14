@@ -1,0 +1,138 @@
+IOLabCEF_0.30.880 - (03-16-2015)
+  - New behavior for the "Reset" button: now, the first click resets the data and 
+    prepares the IOLab to perform a new acquisition for the same sensor selection. 
+    A second click clears the sensor selection.
+  - Javascript files refactoring: the code is now structured in components (WIP)
+
+IOLabCEF_0.29.860 - (01-07-2015)
+  - Save user data in the user's Documents folder on windows as on macosx
+  - Set magnetometer default scale to 150 micro Tesla
+
+IOLabCEF_0.27.848 - (12-11-2014)
+  - Acquisition reload based on *.raw and *.bson files saved on rawdata working directory
+  - Data loading performance improvement (use binary buffer instead of bson for the data transfer)
+
+IOLabCEF_0.26.810 - (11-20-2014)
+  - ECG (9 leads) management with csv export of the original 6 leads 
+  - vertical and horizontal zoom available for the chart mode
+
+IOLabCEF_0.24.787 - (09-10-2014)
+  - Two remotes management (initial release)
+
+IOLabCEF_0.24.726 - (08-17-2014)
+  - Output config for D6 (on/off and low/high)
+  - Fixed configuration 0x2F (ECG + A7/8/9)
+  - Default data smoothing 5 for the wheel
+
+IOLabCEF_0.22.671 - (07-14-2014)
+  - Unplug auto-detection workaround on win32
+  - Fix calibration not start acquisition automatically in some circumstances
+  - Set output control available through a new Options menu (with calibration controls)
+
+IOLabCEF_0.20.657 - (07-08-2014)
+  - Slope/area calculation in the chart analytics
+
+IOLabCEF_0.19.650 - (07-07-2014)
+  - Set output control (prototype)
+
+IOLabCEF_0.19.649 - (07-04-2014)
+  - Parametric Plot (first test version)
+  - Sensor selection refactoring
+
+IOLabCEF_0.17.605 - (06-20-2014)
+  - New zoom feature (Three chart modes: analytics / Zoom / Move)
+  - Resampling of chart improvement (avoid artifacts with high frequency sensor)
+  - New version of AngularJS (1.2.18)
+
+IOLabCEF_0.17.569 - (04-04-2014)
+  - FFT analysis
+
+IOLabCEF_0.17.548 - (02-11-2014)
+  - Invert the force probe calibration
+
+IOLabCEF_0.17.545 - (01-24-2014)
+  - Chart ticks (horizontal lines) + Temperature deactivation on Pressure chart
+  - Reset sensor selection when clicking on Reset btn
+  - Improve sampling factor calculation for high frequency sensor to reduce antialiasing effect
+  - Tests menu removed - Extra contextual menu cleaning
+
+IOLabCEF_0.16.534 - (01-02-2014)
+  - Include the 'frame' and 'sample' numbers in the export file
+
+IOLabCEF_0.15.528 - (01-02-2014)
+  - Adjuste the top header to properly deal with browser width narrowing 
+  - Set default scale of High Gain sensor to 1mV rather than 10mV
+
+IOLabCEF_0.15.524 - (12-17-2013)
+  - Fix OSX resource file parsing containing "+" in the filename
+  - Calibration process redesigned
+
+####### VERSION NAMING CONVENTION (main version relates to API changes while minor one to code revision) #########
+
+IOLabCEF_0.0.14 - (12-10-2013)
+  - Backend support for the export feature file name (time_senrorName.csv)
+  - win32 Packaging adaptation (new Resources folder instead of Release),
+    the html folder is now located in the Resources folder 
+  - Implement different scale factors for different paths in the same chart (used with wheel)
+  - Set color for the check box (legend) description
+  - Invert scaling sliders
+  - No more force call to setFixedConfig when selecting sensor already in the current fixedConfiguration
+
+IOLabCEF_0.0.13 - (12-05-2013)
+  - Add icon on OSX
+  - Additional sensors parameterization (chart scales, legends, units)
+  - Force fixed config when selecting sensors if no data
+  - Restore the calibration feature (styling still needed)
+  - Disable X-sliders when the acquisition is running
+  - Enable/disable the record button depending on the hardware state and sensor configuration
+  - Adapt the X-zooming so that the center of the X-axis remains fixed
+
+IOLabCEF_0.0.12 - (11-27-2013)
+  - New CEF version on the MaxOSX version (fix the slider issue)
+
+IOLabCEF_0.0.11 - (11-26-2013)
+  - show/hide chart paths
+  - framework for custom sensor parameterisation (legend wording, units, path color...)
+  - X-sliders reset when restart/reset the acquisition
+
+IOLabCEF_0.0.10 - (11-21-2013)
+  - The name of the application is now 'IOLab' (no more cefclient)
+  - Include new GUI (work in progress)
+  - Export data feature: the data are exported in csv in a dedicated directory
+  - Time Scale is now in second (internal representation + chart display)
+  - The first data time is now 1/frequency (s) and no more zero
+  - TimeStatistics is now managed synchronously on all charts in //
+
+IOLabCEF_0.0.9 - (11-15-2013)
+  - WorkFiles directory management (check and create it if it doesn't exist)
+  - Resetting of the sensor offset (Force probe & Wheel)
+  - Element (chart) dragging support (experimental)
+
+IOLabCEF_0.0.8 - (10-30-2013)
+  - Calibration of the force probe - API and GUI
+  - Fix wheel proble display overlap (slope not known for the last points but computed afterwards)
+
+IOLabCEF_0.0.7 - (10-23-2013)
+  - The API can now read the calibration data for the Acc/Mag/Gyro and use them to calibrate the data
+  - Serial port detection improvement (prevent crash)
+
+IOLabCEF_0.0.6 - (10-22-2013)
+  - Calibration process (Acc/Mag/Gyro) through modal view
+
+IOLabCEF_0.0.5 - (10-21-2013)
+  - Database modal view (save + query)
+  - Temporary fix to get COM port number from serial.tmp file
+
+IOLabCEF_0.0.4 - (10-17-2013)
+  - Improvement of the AngularJS code
+  - API support for the document base interaction (bson save and query execution).
+  - Now display logs in the devTools console when the application tries to connect to the serial port
+
+IOLabCEF_0.0.3 - (10-16-2013)
+  - Example of modal view (pairing process) using UI BootStrap (http://angular-ui.github.io/bootstrap/)
+
+IOLabCEF_0.0.2 - (10-16-2013)
+  - Improvement of the zooming function (do not show negative x-coordinate when zooning out) 
+
+IOLabCEF_0.0.1 - (10-15-2013)
+  - Initial alpha version

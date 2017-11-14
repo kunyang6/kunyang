@@ -1,0 +1,72 @@
+<div class="chart-container">
+    <!-- Only the scope variables provided through the attributes are available here !!! -->
+    <h3 ng-click="isCollapsed = !isCollapsed; control.dsShow = false">
+        <button class="btn btn-default btn-xs pull-right" ng-show="!isCollapsed" title="Click to collapse">&#8722;</button>
+        <button class="btn btn-default btn-xs pull-right" ng-show="isCollapsed" title="Click to expand">+</button>
+        <span>{{sensor1.desc}} vs {{sensor2.desc}}</span>
+        <small title="The number of data points per second">{{frequency}} Hz</small>
+    </h3>
+    <div collapse="isCollapsed" ng-class="{visible: control.dsShow}">
+        <!-- Header -->
+        <div>
+            <span ng-repeat="path in legendSettings" style="margin: 0 5px;">
+                <input type="checkbox" ng-init="path.show = true" ng-model="path.show" /> <span style="color: {{path.color}}" ng-bind-html="path.legend"></span>
+            </span>
+        </div>
+        <!-- Chart -->
+        <div>
+            <span ng-show="control.loading" class='alert alert-warning' style="position: absolute; left: 45%; top: 30%;">
+                Please wait ...
+            </span>
+            <div class="chart-holder"></div>
+        </div>
+
+        <div class="chart-footer">
+            <!-- chart mode -->
+            <div class="btn-group btn-group-sm pull-left">
+                <label class="btn btn-default btn-sm" ng-repeat="mode in chartModes" ng-model="control.chartMode" btn-radio="mode">
+                    <span class="glyphicon" ng-class="mode.glyphicon"></span>
+                </label>
+            </div>
+
+            <!-- Coordinates 1 -->
+            <div class="input-group input-group-sm pull-left">
+                <span class="input-group-addon" title="Coordinate selection">{{sensor1.desc}}:</span>
+                <div class="input-group-btn" dropdown>
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="control.dsShow = true">
+                        {{control.coordinate1}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right skinny">
+                        <li ng-repeat="coord in coordinates1" ng-click="control.coordinate1 = coord" class="dpdn-opt">{{ coord }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Coordinates 2 -->
+            <div class="input-group input-group-sm pull-left">
+                <span class="input-group-addon" title="Coordinate selection">{{sensor2.desc}}:</span>
+                <div class="input-group-btn" dropdown>
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="control.dsShow = true">
+                        {{control.coordinate2}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right skinny">
+                        <li ng-repeat="coord in coordinates2" ng-click="control.coordinate2 = coord" class="dpdn-opt">{{ coord }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- time range -->
+            <div class="input-group input-group-sm pull-left">
+                <span class="input-group-addon" title="Time range selection">Δt (ms):</span>
+                <div class="input-group-btn" dropdown>
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="control.dsShow = true">
+                        {{control.timeRange}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right skinny">
+                        <li ng-repeat="delta in timeRanges" ng-click="control.timeRange = delta" class="dpdn-opt">{{ delta }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

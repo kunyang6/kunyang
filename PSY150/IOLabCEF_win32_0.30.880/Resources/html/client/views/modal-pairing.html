@@ -1,0 +1,37 @@
+<div class="modal-pairing">
+    <div class="modal-header">
+        <h3 class="modal-title">Remote {{remoteNum}} Pairing</h3>
+    </div>
+    <div class="modal-body">
+        <div ng-show="getPairStatus(remoteNum) == 1">
+            Remote {{remoteNum}} is currently paired with the IOLab dongle. Do you want to unpair this remote?
+            <br /><br />
+            <button class="btn btn-danger" type="button" ng-click="unpairRemote(remoteNum)">Unpair Remote {{remoteNum}}</button>
+        </div>
+        
+        <div ng-show="getPairStatus(remoteNum) == 0">
+            <div ng-show="iolabState.remoteFound == 0">
+                In order to pair your remote to the IOLab dongle, you will need to place the remote in discover mode*. Then press the Find Remote button.
+                <br /><br />
+                <div style="margin:4px 0;">
+                    <button class="btn btn-default" type="button" ng-show="iolabState.dongleMode != 0" ng-click="findRemote()">Find Remote</button>  <!-- 19 = 0x13 -->
+                    <button class="btn btn-default" type="button" ng-show="iolabState.dongleMode == 2" ng-click="stopPairing()">Stop Pairing</button> <!-- 17 = 0x11 -->
+                    <span class="text-warning" ng-show="showFindRemoteMsg">Remote not found. Make sure your remote is in discover mode.</span>
+                </div>
+                <div ng-show="iolabState.remoteFound == 0" class="text-info" style="margin:20px 0 0;">
+                    * To place your remote in discover mode, start with the remote turned off. Next, press and hold the "+" button and then turn on the remote.
+                    Continue to hold the "+" button until it begins flashing rapidly in three-increment spurts.
+                </div>
+            </div>
+            <div ng-show="iolabState.remoteFound != 0">
+                Your remote <span class="text-info">[Remote ID = {{iolabState.remoteFound}}]</span> is ready to be paired with the IOLab dongle. 
+                Press the Pair Remote button to complete the pairing process.
+                <br /><br />
+                <button class="btn btn-success" type="button" ng-click="pairRemote(remoteNum)">Pair Remote {{remoteNum}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Close</button>
+    </div>
+</div>

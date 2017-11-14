@@ -1,0 +1,49 @@
+<div ng-show="showOutputConfig">
+    <h4 class="no-print" ng-show="remotesToDisplay != 3" ng-class="{'visible-sm': remotesToDisplay != 3}">Output Config <small>(Remote {{remote}})</small></h4>
+    <h3 class="hidden-xs hidden-sm no-print" ng-show="remotesToDisplay != 3">Output Config <small>(Remote {{remote}})</small></h3>
+    <h3 class="no-print" ng-click="isCollapsed = !isCollapsed" ng-show="remotesToDisplay == 3" ng-class="{'visible-xs': remotesToDisplay != 3}">
+        <button class="btn btn-default btn-xs pull-right" ng-show="!isCollapsed" title="Click to collapse">&#8722;</button>
+        <button class="btn btn-default btn-xs pull-right" ng-show="isCollapsed" title="Click to expand">+</button>
+        Output Config <small>(Remote {{remote}})</small>
+    </h3>
+    <!--<h3 class="no-print">Output Config <small>(Remote {{remote}})</small></h3>-->
+    <div class="no-print" collapse="isCollapsed">
+        <div>
+            <h5 style="padding-top: 5px;">D6 output</h5>
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-xs" ng-model="D6State" btn-radio="0" ng-disabled="remoteOff">Off</button>
+                    <button type="button" class="btn btn-default btn-xs" ng-model="D6State" btn-radio="2" ng-disabled="remoteOff">On</button>
+                </div>
+                <div class="btn-group" ng-show="D6State == 2" style="margin-left:12px;">
+                    <button type="button" class="btn btn-default btn-xs" ng-model="D6Level" btn-radio="0" ng-disabled="remoteOff">0 V</button>
+                    <button type="button" class="btn btn-default btn-xs" ng-model="D6Level" btn-radio="1" ng-disabled="remoteOff">3.3 V</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h6 class="pointer" ng-click="expertOptions = !expertOptions">
+                <button class="btn btn-default btn-xs pull-right neg-marg-top-5" ng-show="!expertOptions" title="Click to collapse">&#8722;</button>
+                <button class="btn btn-default btn-xs pull-right neg-marg-top-5" ng-show="expertOptions" title="Click to expand">+</button>
+                Expert Options
+            </h6>
+            <form class="expert-options" collapse="expertOptions">
+                <h5>Generic output</h5>
+                <div class="form-group" style="width: 35%; float: left; margin-right: 5%;">
+                    <label>SensorID</label>
+                    <input class="form-control input-sm" ng-model="output.sensorID">
+                </div>
+                <div class="form-group" style="width: 27.5%; float: left; margin-right: 5%;">
+                    <label>Key</label>
+                    <input class="form-control input-sm" ng-model="output.key">
+                </div>
+                <div class="form-group" style="width: 27.5%; float: left;">
+                    <label>Value</label>
+                    <input class="form-control input-sm" ng-model="output.value">
+                </div>
+                <button class="btn btn-primary form-control" ng-click="setOutputConfig()" ng-disabled="remoteOff">Set output</button>                
+            </form>
+        </div>
+    </div>
+</div>

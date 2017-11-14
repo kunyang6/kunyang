@@ -1,0 +1,57 @@
+<div class="chart-container">
+    <!-- Only the scope variables provided through the attributes are available here !!! -->
+    <h3 ng-click="isCollapsed = !isCollapsed; control.dsShow = false">
+        <button class="btn btn-default btn-xs pull-right" ng-show="!isCollapsed" title="Click to collapse">&#8722;</button>
+        <button class="btn btn-default btn-xs pull-right" ng-show="isCollapsed" title="Click to expand">+</button>
+        <span>{{sensor.desc}} <!--(Remote: {{sensor.remote}})--></span>
+        <small title="The number of data points per second">{{control.frequency}} Hz</small>
+    </h3>
+    <div collapse="isCollapsed" ng-class="{visible: control.dsShow}">
+        <!-- Header -->
+        <div>
+            <span ng-repeat="path in control.legendSettings" style="margin: 0 10px 0 0;">
+                <input type="checkbox" ng-init="path.show = true" ng-model="path.show" /> <span style="color: {{path.color}}" ng-bind-html="path.legend"></span>
+            </span>
+        </div>
+
+        <div>
+            <span ng-show="control.loading" class='alert alert-warning chart-loading'>Please wait ...</span>
+            <iolab-ecg-svg ng-repeat="coord in [0, 1, 2, 3, 4, 5, 6, 7, 8]"></iolab-ecg-svg>
+        </div>
+
+        <div class="chart-footer">
+            <!-- chart mode -->
+            <span ng-include="'components/chart.modes.tpl.html'"></span>
+
+            <!-- timeAverage -->
+            <div class="input-group input-group-sm pull-left">
+                <span class="input-group-addon" title="Average across a number of data points">Data smoothing:</span>
+                <div class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-default dropdown-toggle" ng-click="control.dsShow = true">
+                        {{control.timeAverage}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right skinny">
+                        <li ng-repeat="delta in timeAverages" ng-click="control.timeAverage = delta" class="dpdn-opt">{{ delta }}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- export btn -->
+            <div class="btn-group btn-group-sm pull-left">
+                <button class="btn btn-default btn-sm" type="button" ng-click="exportData(sensor)" ng-disabled="control.exportDataDisabled">Export data {{exportDataDisabled}}</button>
+            </div>
+
+            <!-- resetSensorOffset btn -->
+            <div class="btn-group btn-group-sm pull-left">
+                <button class="btn btn-default btn-sm" type="button" ng-click="resetSensorOffset(sensor)" ng-show="sensor.sensorType == 8 || sensor.sensorType == 9">Rezero sensor</button>
+            </div>
+        </div>
+
+        <!-- Export alert messages -->
+        <div ng-controller="alertCtrl" ng-show="alerts.length != 0">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+                The data has been exported to the file <strong>{{alert.message}}</strong>
+            </alert>
+        </div>
+    </div>
+</div>
